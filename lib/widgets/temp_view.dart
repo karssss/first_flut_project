@@ -17,7 +17,9 @@ class TempView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.network(icon, scale: 0.4, color: Colors.black87),
-            SizedBox(width: 50.0),
+            // SizedBox(width: 50.0),
+      // Expanded(
+      //   child:
             Column(
               children: <Widget>[
                 Text(
@@ -29,6 +31,7 @@ class TempView extends StatelessWidget {
                 ),
               ],
             )
+            // )
           ],
         ),
       );
