@@ -177,8 +177,7 @@ class WeatherList {
   }
 
   String getIconUrl(){
-    // return Constants.WEATHER_IMAGES_URL + weather!.first.icon! + '.png';
-    print('res: ${Constants.WEATHER_IMAGES_URL + weather!.first.icon! + '.png'}');
+    // print('res: ${Constants.WEATHER_IMAGES_URL + weather!.first.icon! + '.png'}');
     return Constants.WEATHER_IMAGES_URL + weather!.first.icon! + '.png';
   }
 }
