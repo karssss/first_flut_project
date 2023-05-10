@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/src/fa_icon.dart';
 import 'package:intl/intl.dart';
 
@@ -12,16 +11,12 @@ class Util {
     return Column(
       children: <Widget>[
         faIcon,
-        SizedBox(
-          height: 10.0,
-        ),
+        const SizedBox(height: 10.0),
         Text(
           '$value',
           style: TextStyle(fontSize: 20.0, color: Colors.black87),
         ),
-        SizedBox(
-          height: 10.0,
-        ),
+        const SizedBox(height: 10.0),
         Text('$units', style: TextStyle(fontSize: 15.0, color: Colors.black87),
         ),
       ],
