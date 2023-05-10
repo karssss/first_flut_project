@@ -14,18 +14,28 @@ class WeatherForecastScreen extends StatefulWidget {
 }
 
 class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
-  Future<WeatherForecast>? forecastObject;
-  String _cityName = 'London';
+  // Future<WeatherForecast>? forecastObject;
+  // Future<WeatherForecast>? forecastObjectFunc;
+  // late List<WeatherForecast> cityList;
+  // String _cityName = 'London';
+  forecastObjectFunc( String cityName){
+    return WeatherApi().fetchWeatherForecastWithCity(cityName: cityName);
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    forecastObject = WeatherApi().fetchWeatherForecastWithCity(cityName: _cityName);
+    // forecastObjectFunc( String cityName){
+    //   return WeatherApi().fetchWeatherForecastWithCity(cityName: cityName);
+    // }
+    // forecastObject = WeatherApi().fetchWeatherForecastWithCity(cityName: _cityName);
+    // forecastObject = WeatherApi().fetchWeatherForecastWithCity(cityName: 'London');
   }
 
-  // @override
+  @override
   Widget build(BuildContext context) {
+    List<String> cityList = ["Los Angeles", "Ottawa", "Sydney", "Cape Town"];
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black87,
@@ -42,37 +52,77 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
             ),
           ],
         ),
-        body: ListView(children: <Widget>[
-          Container(
-            child: FutureBuilder<WeatherForecast>(
-              future: forecastObject,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 50.0,
-                      ),
-                      CityView(snapshot: snapshot),
-                      SizedBox(
-                        height: 50.0,
-                      ),
-                      TempView(snapshot: snapshot),
-                      SizedBox(
-                        height: 50.0,
-                      ),
-                      DetailView(snapshot: snapshot),
-                    ],
-                  );
-                } else {
-                  return Center(
-                    child: SpinKitThreeBounce(color: Colors.black87, size: 50.0),
-                  );
-                }
-                ;
-              },
-            ),
-          )
-        ]));
+        body: ListView.builder(
+            itemCount: cityList.length,
+            itemBuilder: (BuildContext ctxt, int index) {
+              // return Text(cityList[index]);
+              return Container(
+                  child: FutureBuilder<WeatherForecast>(
+                    // future: forecastObject,
+                  future: forecastObjectFunc(cityList[index]),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 50.0,
+                          ),
+                          CityView(snapshot: snapshot),
+                          SizedBox(
+                            height: 50.0,
+                          ),
+                          // TempView(snapshot: snapshot),
+                          // SizedBox(
+                          //   height: 50.0,
+                          // ),
+                          // DetailView(snapshot: snapshot),
+                        ],
+                      );
+                    } else {
+                      return Center(
+                        child: SpinKitThreeBounce(color: Colors.black87, size: 50.0),
+                      );
+                    }
+                  })
+              );
+    })
+    );
   }
 }
+
+
+// OLD
+    // body: ListView(children: <Widget>[
+    //   Container(
+    //     child: FutureBuilder<WeatherForecast>(
+    //       future: forecastObject,
+    //       builder: (context, snapshot) {
+    //         if (snapshot.hasData) {
+    //           return Column(
+    //             children: <Widget>[
+    //               SizedBox(
+    //                 height: 50.0,
+    //               ),
+    //               CityView(snapshot: snapshot),
+    //               SizedBox(
+    //                 height: 50.0,
+    //               ),
+    //               TempView(snapshot: snapshot),
+    //               SizedBox(
+    //                 height: 50.0,
+    //               ),
+    //               DetailView(snapshot: snapshot),
+    //             ],
+    //           );
+    //         } else {
+    //           return Center(
+    //             child: SpinKitThreeBounce(color: Colors.black87, size: 50.0),
+    //           );
+    //         }
+    //         ;
+    //       },
+    //     ),
+    //   )
+    // ])
+    // );
+

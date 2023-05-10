@@ -15,22 +15,39 @@ class CityView extends StatelessWidget {
     var formattedDate = DateTime.fromMillisecondsSinceEpoch(forecastList!.first.dt! * 1000);
 
     return Container(
-      child: Column(
-          children: <Widget>[
-            Text('$city, $country', style:TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 28.0,
-                color:Colors.black87
+        // alignment: Alignment.center,
+      // child: Column(
+      // children: <Widget>[
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Expanded(
+              child: Column(
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                 children: [
+                Text('$country', style: TextStyle(
+                    // fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
+                    color: Colors.grey
+                ),
+                ),
+                Text('$city', style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 28.0,
+                    color: Colors.black87
+                ),
+                ),
+               ]
+              )
+          ),
+          Text(
+            '${ Util.getFormattedDate(formattedDate)}',
+            style: TextStyle(
+              fontSize: 15.0,
             ),
-            ),
-            Text(
-              '${ Util.getFormattedDate(formattedDate)}',
-               style:TextStyle(
-                 fontSize: 15.0,
-              ),
-            ),
-          ],
-      ),
+          )
+        ]
+      )
     );
   }
 }
