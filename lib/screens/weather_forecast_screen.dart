@@ -1,5 +1,6 @@
 import 'package:first_flut_project/api/weather_api.dart';
 import 'package:first_flut_project/widgets/city_view.dart';
+import 'package:first_flut_project/widgets/detail_view.dart';
 import 'package:first_flut_project/widgets/temp_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -21,9 +22,6 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
     // TODO: implement initState
     super.initState();
     forecastObject = WeatherApi().fetchWeatherForecastWithCity(cityName: _cityName);
-    // forecastObject?.then((weather) {
-    //   print(weather.list?.first.weather?.first.main);
-    // });
   }
 
   // @override
@@ -52,10 +50,18 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                 if (snapshot.hasData) {
                   return Column(
                     children: <Widget>[
-                      SizedBox(height: 50.0,),
+                      SizedBox(
+                        height: 50.0,
+                      ),
                       CityView(snapshot: snapshot),
-                      SizedBox(height: 50.0,),
-                      TempView(snapshot: snapshot)
+                      SizedBox(
+                        height: 50.0,
+                      ),
+                      TempView(snapshot: snapshot),
+                      SizedBox(
+                        height: 50.0,
+                      ),
+                      DetailView(snapshot: snapshot),
                     ],
                   );
                 } else {
@@ -63,6 +69,7 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
                     child: SpinKitThreeBounce(color: Colors.black87, size: 50.0),
                   );
                 }
+                ;
               },
             ),
           )

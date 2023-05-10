@@ -12,7 +12,6 @@ class CityView extends StatelessWidget {
     List<WeatherList>? forecastList = snapshot.data!.list;
     var city = snapshot.data!.city!.name;
     var country = snapshot.data!.city!.country;
-    // DateTime? formattedDate = forecastList?.first.dt!=null ? DateTime.fromMillisecondsSinceEpoch(forecastList?.first.dt??1 * 1000) : null;
     var formattedDate = DateTime.fromMillisecondsSinceEpoch(forecastList!.first.dt! * 1000);
 
     return Container(
@@ -24,7 +23,6 @@ class CityView extends StatelessWidget {
                 color:Colors.black87
             ),
             ),
-            // if(formattedDate!=null)
             Text(
               '${ Util.getFormattedDate(formattedDate)}',
                style:TextStyle(

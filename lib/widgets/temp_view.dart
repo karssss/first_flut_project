@@ -11,13 +11,16 @@ class TempView extends StatelessWidget {
     List<WeatherList>? forecastList = snapshot.data!.list;
     var icon = forecastList!.first.getIconUrl();
     var temp = forecastList!.first.temp?.day?.toStringAsFixed(0);
+    var description = forecastList!.first.weather!.first.description;
 
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.network(icon, scale: 0.4, color: Colors.black87),
-            SizedBox(width: 50.0),
+            Image.network(icon, scale: 0.4, width: 60,),
+            // SizedBox(width: 50.0),
+      // Expanded(
+      //   child:
             Column(
               children: <Widget>[
                 Text(
@@ -27,8 +30,16 @@ class TempView extends StatelessWidget {
                       color:Colors.black87,
                   ),
                 ),
+                Text(
+                  '$description',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color:Colors.black87,
+                  )
+                ),
               ],
             )
+            // )
           ],
         ),
       );
